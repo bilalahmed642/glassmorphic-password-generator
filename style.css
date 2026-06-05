@@ -12,7 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
-    overflow: hidden;
+    overflow-y: auto;
+    padding: 2rem 1rem;
     position: relative;
 }
 
@@ -25,49 +26,48 @@ body::before, body::after {
     border-radius: 50%;
     z-index: 0;
     filter: blur(80px);
-    opacity: 0.4;
+    opacity: 0.35;
     animation: float 8s ease-in-out infinite alternate;
 }
 
 body::before {
     background: #4f46e5;
-    top: 15%;
-    left: 20%;
+    top: 10%;
+    left: 15%;
 }
 
 body::after {
     background: #c084fc;
-    bottom: 15%;
-    right: 20%;
+    bottom: 10%;
+    right: 15%;
     animation-delay: -4s;
 }
 
-/* Glassmorphism Main Container */
-body > div, .container {
+/* Glassmorphism Main Container Layout */
+.container {
     position: relative;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2.25rem;
     border-radius: 24px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    max-width: 440px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
 }
 
-/* App Title Styling */
 h2 {
     color: #ffffff;
     font-size: 1.75rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     letter-spacing: -0.5px;
+    text-align: center;
 }
 
-/* Password Input Field */
+/* Password Input Field Display */
 input[type="text"] {
     width: 100%;
     padding: 1rem 1.25rem;
@@ -81,22 +81,92 @@ input[type="text"] {
     outline: none;
     text-align: center;
     transition: all 0.3s ease;
+}
+
+/* LEVEL 2: Dynamic Strength Meter Animation Layout */
+.strength-meter-container {
+    margin-top: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
-input[type="text"]:focus {
-    border-color: #38bdf8;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-    background: rgba(15, 23, 42, 0.8);
+.strength-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.4rem;
 }
 
-input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-    font-weight: 400;
-    letter-spacing: 0;
+#strengthText {
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-/* Action Buttons Group */
+.strength-bar-wrapper {
+    height: 6px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out, background-color 0.4s ease;
+}
+
+/* Slider Section Styling */
+.slider-container {
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.slider-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#lengthValue {
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #6366f1;
+    cursor: pointer;
+}
+
+/* Rules Checklist Context */
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 1.75rem;
+}
+
+.checkbox-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.checkbox-label input {
+    accent-color: #6366f1;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Primary Action Module buttons */
 .btn-group {
     display: flex;
     gap: 1rem;
@@ -113,40 +183,100 @@ button {
     transition: all 0.2s ease;
 }
 
-/* Generate Button (Primary) */
 button:nth-of-type(1) {
     background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
 }
 
 button:nth-of-type(1):hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
     filter: brightness(1.1);
 }
 
-button:nth-of-type(1):active {
-    transform: translateY(1px);
-}
-
-/* Copy Button (Secondary) */
 button:nth-of-type(2) {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 button:nth-of-type(2):hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.18);
     transform: translateY(-2px);
 }
 
-button:nth-of-type(2):active {
-    transform: translateY(1px);
+/* LEVEL 2: Password History Panel System */
+.history-section {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Background Blob Animation */
+.history-section h3 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.history-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.history-item {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    color: #a5b4fc;
+    font-family: monospace;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item span {
+    word-break: break-all;
+    user-select: all;
+}
+
+.empty-history {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+/* Toast Container Pop-up Framework */
+.toast {
+    position: fixed;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+    padding: 0.75rem 1.75rem;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.toast.show {
+    bottom: 30px;
+}
+
 @keyframes float {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(30px, -30px) scale(1.1); }

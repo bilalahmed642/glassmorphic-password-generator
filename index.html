@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Password Generator</title>
+    <title>Cryptographic Password Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,11 +13,58 @@
         
         <input type="text" id="password" readonly placeholder="Click Generate">
 
+        <!-- LEVEL 2: Real-time Strength Meter Structure -->
+        <div class="strength-meter-container">
+            <div class="strength-meta">
+                <span>Strength:</span>
+                <span id="strengthText">None</span>
+            </div>
+            <div class="strength-bar-wrapper">
+                <div id="strengthBar" class="strength-bar"></div>
+            </div>
+        </div>
+
+        <!-- LEVEL 1: Password Length Slider -->
+        <div class="slider-container">
+            <div class="slider-details">
+                <span>Password Length</span>
+                <span id="lengthValue">16</span>
+            </div>
+            <input type="range" id="lengthSlider" min="8" max="32" value="16">
+        </div>
+
+        <!-- LEVEL 1: Checkbox Rule Sets -->
+        <div class="rules-container">
+            <label class="checkbox-label">
+                <input type="checkbox" id="uppercase" checked> Include Uppercase (A-Z)
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="lowercase" checked> Include Lowercase (a-z)
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="numbers" checked> Include Numbers (0-9)
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="symbols" checked> Include Symbols (!@#$%^&*)
+            </label>
+        </div>
+
         <div class="btn-group">
             <button onclick="generate()">Generate</button>
             <button onclick="copypassword()">Copy</button>
         </div>
+
+        <!-- LEVEL 2: Password History Panel Section -->
+        <div class="history-section">
+            <h3>Recent Passwords Log</h3>
+            <ul id="historyList" class="history-list">
+                <li class="empty-history">No generated strings cached yet.</li>
+            </ul>
+        </div>
     </div>
+
+    <!-- LEVEL 1: Custom Glassmorphic Toast -->
+    <div id="toast" class="toast">📋 Password copied to clipboard!</div>
 
     <script src="app.js"></script>
 </body>
